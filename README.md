@@ -182,7 +182,7 @@ make -j4
  make
  make install
  ```
- * If error message saying "some shared library with extension so files are missing", just find and copy the so files into the apporopriate directory. 
+ * If error message saying "some shared library with extension so files are missing", copy the so files into the apporopriate directory if you can find them using "find / -name ~~~ ".  Otherwise, try to install using apt install. 
  
 
 Please see [**Installation**](https://openvslam.readthedocs.io/en/master/installation.html) chapter in the [documentation](https://openvslam.readthedocs.io/).
