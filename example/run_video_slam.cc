@@ -205,9 +205,9 @@ int main(int argc, char* argv[]) {
 #ifdef USE_GOOGLE_PERFTOOLS
     ProfilerStart("slam.prof");
 #endif
-
     // run tracking
     if (cfg->camera_->setup_type_ == openvslam::camera::setup_type_t::Monocular) {
+        
         mono_tracking(cfg, vocab_file_path->value(), video_file_path->value(), mask_img_path->value(),
                       frame_skip->value(), no_sleep->is_set(), auto_term->is_set(),
                       eval_log->is_set(), map_db_path->value());

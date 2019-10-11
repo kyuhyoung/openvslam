@@ -25,7 +25,6 @@ global_bundle_adjuster::global_bundle_adjuster(data::map_database* map_db, const
 
 void global_bundle_adjuster::optimize(const unsigned int lead_keyfrm_id_in_global_BA, bool* const force_stop_flag) const {
     // 1. データを集める
-
     const auto keyfrms = map_db_->get_all_keyframes();
     const auto lms = map_db_->get_all_landmarks();
     std::vector<bool> is_optimized_lm(lms.size(), true);
