@@ -167,7 +167,7 @@ cmake \
     ..
 make -j4
 ```
- * If error message with "lib_opencv3 ~~~ " occurs, try this 
+ * If error message with "libopencv_core3.so.3.3 ~~~ " occurs, try this 
  ```
  sudo apt intall --reinstall ros-kinetic-opencv3
  ```
