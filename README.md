@@ -44,7 +44,7 @@ In return, we hope this project will bring safe and reliable technologies for a 
 
 ## Installation
 
-### For Ubuntu 16.04, just try this.
+### For Ubuntu 16.04.
 
 ```
 apt update -y
