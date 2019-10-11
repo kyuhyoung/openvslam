@@ -44,6 +44,147 @@ In return, we hope this project will bring safe and reliable technologies for a 
 
 ## Installation
 
+### For Ubuntu 16.04, just try this.
+
+```
+apt update -y
+apt upgrade -y --no-install-recommends
+# basic dependencies
+apt install -y build-essential pkg-config cmake git wget curl unzip
+apt install -y libyaml-cpp-dev libgoogle-glog-dev libgflags-dev
+```
+
+#### Skip this if Pangolin is installed already.
+```
+apt install -y libglew-dev
+cd /path/to/working/dir
+git clone https://github.com/stevenlovegrove/Pangolin.git
+cd Pangolin
+mkdir build && cd build
+cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr/local \
+    ..
+make -j4
+make install
+```
+
+#### Skip this if Eigen is installed already.
+```
+cd /path/to/working/dir
+wget -q http://bitbucket.org/eigen/eigen/get/3.3.4.tar.bz2
+tar xf 3.3.4.tar.bz2
+rm -rf 3.3.4.tar.bz2
+cd eigen-eigen-5a0156e40feb
+mkdir -p build && cd build
+cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr/local \
+    ..
+make -j4
+make install
+```
+
+#### Skip this if OpenCV is installed already.
+```
+apt install -y libgtk-3-dev
+apt install -y ffmpeg
+apt install -y libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libavresample-dev
+
+cd /path/to/working/dir
+wget -q https://github.com/opencv/opencv/archive/3.4.0.zip
+unzip -q 3.4.0.zip
+rm -rf 3.4.0.zip
+cd opencv-3.4.0
+mkdir -p build && cd build
+cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr/local \
+    -DENABLE_CXX11=ON \
+    -DBUILD_DOCS=OFF \
+    -DBUILD_EXAMPLES=OFF \
+    -DBUILD_JASPER=OFF \
+    -DBUILD_OPENEXR=OFF \
+    -DBUILD_PERF_TESTS=OFF \
+    -DBUILD_TESTS=OFF \
+    -DWITH_EIGEN=ON \
+    -DWITH_FFMPEG=ON \
+    -DWITH_OPENMP=ON \
+    ..
+make -j4
+make install
+```
+
+#### latest g2o install.
+```
+# g2o dependencies
+apt install -y libatlas-base-dev libsuitesparse-dev
+cd /path/to/working/dir
+git clone https://github.com/RainerKuemmerle/g2o.git
+cd g2o
+mkdir build && cd build
+cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr/local \
+    -DCMAKE_CXX_FLAGS=-std=c++11 \
+    -DBUILD_SHARED_LIBS=ON \
+    -DBUILD_UNITTESTS=OFF \
+    -DBUILD_WITH_MARCH_NATIVE=OFF \
+    -DG2O_USE_CHOLMOD=ON \
+    -DG2O_USE_CSPARSE=ON \
+    -DG2O_USE_OPENGL=OFF \
+    -DG2O_USE_OPENMP=ON \
+    ..
+make -j4
+make install
+```
+
+#### custom DBoW2 install.
+```
+cd /path/to/working/dir
+git clone https://github.com/shinsumicco/DBoW2.git
+cd DBoW2
+mkdir build && cd build
+cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr/local \
+    ..
+make -j4
+make install
+```
+
+#### finally openvslam install.
+```
+cd /path/to/openvslam
+mkdir build && cd build
+cmake \
+    -DBUILD_WITH_MARCH_NATIVE=OFF \
+    -DUSE_PANGOLIN_VIEWER=ON \
+    -DUSE_SOCKET_PUBLISHER=OFF \
+    -DUSE_STACK_TRACE_LOGGER=ON \
+    -DBOW_FRAMEWORK=DBoW2 \
+    -DBUILD_TESTS=ON \
+    ..
+make -j4
+```
+ * If error message with "lib_opencv3 ~~~ " occurs, try this 
+ ```
+ sudo apt intall --reinstall ros-kinetic-opencv3
+ ```
+ * If error message with "libyaml-cpp ~~~ " occurs, try this 
+ ```
+ cd /path/to/working/dir
+ git clone https://github.com/jbeder/yaml-cpp.git
+ cd yaml-cpp
+ mkdir build
+ cd build
+ cmake -DYAML_BUILD_SHARED_LIBS=ON -DBUILD_SHARED_LIBS=ON ..
+ make
+ make install
+ ```
+ * If error message saying "some shared library with extension so files are missing", just find and copy the so files into the apporopriate directory. 
+ 
+
 Please see [**Installation**](https://openvslam.readthedocs.io/en/master/installation.html) chapter in the [documentation](https://openvslam.readthedocs.io/).
 
 [**The instructions for Docker users**](https://openvslam.readthedocs.io/en/master/docker.html) are also provided.
